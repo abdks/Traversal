@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public Destination GetById(int id)
         {
-            throw new NotImplementedException();
+                return _DestinationDal.GetByID(id);
 
         }
 
