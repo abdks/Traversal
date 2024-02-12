@@ -10,8 +10,9 @@ namespace Traversal.ViewComponents.FeaturePartial
 
         public IViewComponentResult Invoke()
         {
-            var values = featureManager.GetAll();
-            return View(values);
+            //var values = featureManager.GetAll();
+            //ViewBag.image1 = featureManager.GetById
+            return View();
         }
     }
 }
