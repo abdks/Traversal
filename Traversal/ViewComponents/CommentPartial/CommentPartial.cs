@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DatatAccessLayer.EntityFreamework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Traversal.ViewComponents.CommentPartial
 {
     public class CommentPartial : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        CommentManager _commentManager = new CommentManager(new EfCommentDal());
+        public IViewComponentResult Invoke(int id)
         {
-            return View();
+            var values = _commentManager.TGetDestinationByID(id);
+            return View(values);
         }
     }
 }
