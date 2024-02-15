@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DatatAccessLayer.EntityFreamework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,16 @@ namespace Traversal.Areas.Admin.Controllers
     [Area("Admin")]
     public class DestinationController : Controller
     {
-        DestinationManager DestinationManager = new DestinationManager(new EfDestinationDal());
+        private readonly IDestinationService _destinationService;
+
+        public DestinationController(IDestinationService destinationService)
+        {
+            _destinationService = destinationService;
+        }
+
         public IActionResult Index()
         {
-            var values = DestinationManager.GetAll();
+            var values = _destinationService.GetAll();
             return View(values);
         }
         [HttpGet]
@@ -22,27 +29,27 @@ namespace Traversal.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddDestination(Destination destination)
         {
-            DestinationManager.TAdd(destination);
+            _destinationService.TAdd(destination);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult DeleteDestination(int id)
         {
-            var values = DestinationManager.GetById(id);
-            DestinationManager.TDelete(values);
+            var values = _destinationService.GetById(id);
+            _destinationService.TDelete(values);
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult UpdateDestination(int id)
         {
-            var values = DestinationManager.GetById(id);
+            var values = _destinationService.GetById(id);
             return View(values);
         }
         [HttpPost]
         public IActionResult UpdateDestination(Destination destination)
         {
-                DestinationManager.TUpdate(destination);
+            _destinationService.TUpdate(destination);
             return RedirectToAction("Index");
         }
 
