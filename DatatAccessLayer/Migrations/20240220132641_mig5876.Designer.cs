@@ -4,6 +4,7 @@ using DatatAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatatAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240220132641_mig5876")]
+    partial class mig5876
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,30 +87,6 @@ namespace DatatAccessLayer.Migrations
                     b.HasKey("About2ID");
 
                     b.ToTable("About2s");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Announcement", b =>
-                {
-                    b.Property<int>("AnnouncementID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnnouncementID"), 1L, 1);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AnnouncementID");
-
-                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.AppRole", b =>
@@ -309,9 +287,6 @@ namespace DatatAccessLayer.Migrations
 
                     b.Property<DateTime>("MessageDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("MessageStatus")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
