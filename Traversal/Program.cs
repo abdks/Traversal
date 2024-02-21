@@ -1,10 +1,14 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using BusinessLayer.Container;
+using BusinessLayer.ValidationRules;
 using DatatAccessLayer.Abstract;
 using DatatAccessLayer.Concrete;
 using DatatAccessLayer.EntityFreamework;
+using DTOLayer.DTOs.AnnouncementDTOs;
 using EntityLayer.Concrete;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,13 +51,19 @@ public class Program
 
                     services.ContainerDep();
 
+                    // build   services.AddAutoMapper(Typeof(Program));
+                    services.AddAutoMapper(typeof(Program));
+
+                    services.AddTransient<IValidator<AnnouncementDTOs>, AnnouncementValidator>();
+
+
                     services.AddControllersWithViews(opt =>
                     {
                         var policy = new AuthorizationPolicyBuilder()
                             .RequireAuthenticatedUser()
                             .Build();
                         opt.Filters.Add(new AuthorizeFilter(policy));
-                    });
+                    }).AddFluentValidation();
                 })
                 .Configure(app =>
                 {
