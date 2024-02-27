@@ -46,6 +46,8 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+
+            
         }
     }
 }

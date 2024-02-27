@@ -7,7 +7,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Traversal.CQRS.Handlers.DestinationHandlers;
 using Traversal.Models;
+using TraversalCoreProje.CQRS.Handlers.DestinationHandler;
 
 public class Program
 {
@@ -22,7 +24,10 @@ public class Program
             {
                 webBuilder.ConfigureServices((hostingContext, services) =>
                 {
+                    
                     services.AddDbContext<Context>();
+
+                    //services.AddScoped<GetAllDestinationQueryHandler>();
 
                     services.AddLogging(x =>
                     {
@@ -47,6 +52,8 @@ public class Program
 
                     services.AddHttpClient();
 
+                    services.AddScoped<GetAllDestinationQueryHandler>();
+                    services.AddScoped<GetDestinationByIDQueryHandler>();
                     services.ContainerDep();
 
                     services.AddAutoMapper(typeof(Program));

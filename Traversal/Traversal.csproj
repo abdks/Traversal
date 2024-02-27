@@ -14,6 +14,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="iTextSharp.LGPLv2.Core" Version="3.4.17" />
     <PackageReference Include="MailKit" Version="4.3.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.26">
@@ -39,6 +40,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Member\Data\" />
+    <Folder Include="CQRS\Commands\" />
     <Folder Include="wwwroot\pdfreport\" />
     <Folder Include="wwwroot\Userimages\" />
   </ItemGroup>
