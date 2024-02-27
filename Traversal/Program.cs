@@ -1,21 +1,12 @@
-using BusinessLayer.Abstract;
-using BusinessLayer.Concrete;
 using BusinessLayer.Container;
 using BusinessLayer.ValidationRules;
-using DatatAccessLayer.Abstract;
 using DatatAccessLayer.Concrete;
-using DatatAccessLayer.EntityFreamework;
 using DTOLayer.DTOs.AnnouncementDTOs;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.IO;
 using Traversal.Models;
 
 public class Program
@@ -44,18 +35,7 @@ public class Program
 
                     services.AddIdentity<AppUser, AppRole>()
                         .AddEntityFrameworkStores<Context>()
-                        .AddErrorDescriber<CustomIdentityValidator>()
-                        .AddEntityFrameworkStores<Context>();
-
-                    services.AddControllersWithViews();
-
-                    services.ContainerDep();
-
-                    // build   services.AddAutoMapper(Typeof(Program));
-                    services.AddAutoMapper(typeof(Program));
-
-                    services.AddTransient<IValidator<AnnouncementDTOs>, AnnouncementValidator>();
-
+                        .AddErrorDescriber<CustomIdentityValidator>();
 
                     services.AddControllersWithViews(opt =>
                     {
@@ -64,6 +44,12 @@ public class Program
                             .Build();
                         opt.Filters.Add(new AuthorizeFilter(policy));
                     }).AddFluentValidation();
+
+                    services.ContainerDep();
+
+                    services.AddAutoMapper(typeof(Program));
+
+                    services.AddTransient<IValidator<AnnouncementDTOs>, AnnouncementValidator>();
                 })
                 .Configure(app =>
                 {
