@@ -1,0 +1,21 @@
+﻿@model IEnumerable<BookingExhangeViewModel.Exchange_Rates>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<table class="table tabl-bordered">
+    <tr>
+        <th>Kur Adı</th>      
+        <th>kur Oranı</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+          <td>@item.currency</td>
+          <td>@item.exchange_rate_buy</td>
+        </tr>
+    }
+</table>

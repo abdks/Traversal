@@ -45,6 +45,8 @@ public class Program
                         opt.Filters.Add(new AuthorizeFilter(policy));
                     }).AddFluentValidation();
 
+                    services.AddHttpClient();
+
                     services.ContainerDep();
 
                     services.AddAutoMapper(typeof(Program));
