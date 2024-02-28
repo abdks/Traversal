@@ -1,10 +1,13 @@
 ﻿using BusinessLayer.Concrete;
 using DatatAccessLayer.EntityFreamework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Traversal.Controllers
 {
+    [AllowAnonymous]
     public class DestinationController : Controller
     {
         DestinationManager DestinationManager = new DestinationManager(new EfDestinationDal());
@@ -12,10 +15,10 @@ namespace Traversal.Controllers
         public IActionResult Index()
         {
             var values = DestinationManager.GetAll();
-            return View(values); return View();
+            return View(values);
         }
         [HttpGet]
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             ViewBag.Id = id;
             var values = DestinationManager.GetById(id);
