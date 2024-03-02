@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             _DestinationDal.Delete(t);
         }
 
+        public List<Destination> TGetLast4Destinations()
+        {
+          return _DestinationDal.GetLast4Destinations();
+        }
+
         public void TUpdate(Destination t)
         {
             _DestinationDal.Update(t);
