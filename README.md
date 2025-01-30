@@ -1,6 +1,5 @@
 # M&Y Yazılım Eğitim Akademi - TRAVERSAL
 
-Bu proje Murat Yüceadağın Youtube kanalında paylaştığı 40 saatlik Traversal projesidir.
 
 Proje bir tur acentesinin web isteğinin hepsini karşılayabileceği bir projedir.
 Projede kullanıcı bir tura rezervasyon yapmak istediği zaman kayıt olması gerekiyor o tur hakkında blog yazılarını inceleyip bu blog yazılarına yorumlar yapabiliyor.Admin tarafında ise
